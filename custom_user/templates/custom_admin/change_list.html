@@ -1,0 +1,7 @@
+{% extends "admin/change_list.html" %} {% load i18n %} 
+{% block object-tools-items %}
+    {{ block.super }}
+    <li>
+        <a class="historylink addlink" href="{% url 'admin:custom_user_emailrecord_add' %}">Send Bulk Email</a>
+    </li>
+{% endblock %}
