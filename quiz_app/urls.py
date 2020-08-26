@@ -19,8 +19,8 @@ from django.conf.urls.static import static
 from django.urls import path
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-admin.site.index_template = 'custom_admin/index.html'
+admin.site.index_template = "custom_admin/index.html"
 admin.autodiscover()

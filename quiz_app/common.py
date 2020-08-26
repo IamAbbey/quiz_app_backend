@@ -7,7 +7,7 @@ def custom_send_mail(subject, message, list_of_email):
     send_mail(
         subject=subject,
         message=message,
-        from_email= os.getenv("DEFAULT_FROM_EMAIL", "info@example.com"),
+        from_email=os.getenv("DEFAULT_FROM_EMAIL", "info@example.com"),
         recipient_list=list_of_email,
         fail_silently=False,
     )

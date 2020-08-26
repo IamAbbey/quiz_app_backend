@@ -7,22 +7,34 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='EmailRecord',
+            name="EmailRecord",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('subject', models.CharField(max_length=220)),
-                ('message', models.TextField()),
-                ('no_of_user', models.PositiveSmallIntegerField(help_text='The number of users as at the time this mail was sent')),
-                ('updateted_date', models.DateTimeField(auto_now=True)),
-                ('created_date', models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("subject", models.CharField(max_length=220)),
+                ("message", models.TextField()),
+                (
+                    "no_of_user",
+                    models.PositiveSmallIntegerField(
+                        help_text="The number of users as at the time this mail was sent"
+                    ),
+                ),
+                ("updateted_date", models.DateTimeField(auto_now=True)),
+                ("created_date", models.DateTimeField(auto_now_add=True)),
             ],
             options={
-                'ordering': ['-created_date'],
+                "ordering": ["-created_date"],
             },
         ),
     ]
