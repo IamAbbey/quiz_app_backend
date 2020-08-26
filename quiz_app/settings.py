@@ -9,8 +9,11 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
+
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -20,17 +23,18 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'wp%0c7xpy849ysqsf&52wt&ozrddc!#d%jgh=w2w3kw+q2svlw'
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY", 'wp%0c7xpy849ysqsf&52wt&ozrddc!#d%jgh=w2w3kw+q2svlw'
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(os.environ.get("DEBUG", True))
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "*").split(" ")
 
 # Application definition
 
-INBUILT_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,7 +47,7 @@ PROJECT_APPS = [
     'custom_user.apps.CustomUserConfig'
 ]
 
-INSTALLED_APPS = INBUILT_APPS + PROJECT_APPS
+INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -126,5 +130,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "quiz_app", "static")
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_HOST = os.getenv("MAIL_HOST")
+EMAIL_PORT = os.getenv("MAIL_PORT")
+EMAIL_USE_SSL = False
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv("MAIL_USERNAME")
+EMAIL_HOST_PASSWORD = os.getenv("MAIL_PASSWORD")
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "info@example.com")

@@ -1,11 +1,5 @@
 {% extends "admin/index.html" %} {% load i18n %} 
 {% load static %}
-{% block object-tools-items %}
-    {{ block.super }}
-    <li>
-        <a class="historylink addlink" href="{% url 'admin:custom_user_emailrecord_add' %}">Send Bulk Email</a>
-    </li>
-{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
